@@ -4,23 +4,23 @@ Documentation on the Implementation of taucoin on ipfs
 ## Table of Contents
 
 - [network structure](#network-structure)
-- [pubsub mechanism](#pubsub-mechanism)
-- [data and hash algorithm](#data-and-hash-algorithm)
-- [flow chart](#flow-chart)
+- [data exchange based on pubsub mechanism](#data-exchange-based-on-pubsub-mechanism)
+- [block chain hash chain and hashc](#block-chain-hash-chain-and-hashc)
+- [block synchronization flow chart](#block-synchronization-flow-chart)
 
 
 ## NETWORK STRUCTURE
 
 ![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/networkstructure.jpg)
 
-## PUBSUB MECHANISM
+## DATA EXCHANGE BASED ON PUBSUB MECHANISM
 
-![pubsubmechanism](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/pubsubmechanism.jpg)
+![pubsubmechanism](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/dataexchangebasedonpubsubmechanism.jpg)
 
-## DATA AND HASH ALGORITHM
+## BLOCK CHAIN HASH CHAIN AND HASHC
 
-![dst](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/dataandhashalgorithm.jpg)
+![dst](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockchainhashchainandhashc.jpg)
 
-## FLOW CHART
+## BLOCK SYNCHRONIZATION FLOW CHART
 
-![sddt](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/flowchart.jpg)
+![sddt](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blocksynchronizationflowchart.jpg)
