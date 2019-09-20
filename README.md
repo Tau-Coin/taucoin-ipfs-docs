@@ -22,7 +22,7 @@ Documentation on the Implementation of taucoin on ipfs
 
 ![dst](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockchainhashchainandhashc.jpg)
 
-## BLOCK CHAIN HASH CHAIN AND HASHC
+## TRANSACTION TRANSACTION POOL AND HASHL
 
 ![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/transactiontransactionpoolandhashl.jpg)
 
