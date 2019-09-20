@@ -5,8 +5,8 @@ Documentation on the Implementation of taucoin on ipfs
 
 - [network structure](#network-structure)
 - [data exchange based on pubsub mechanism](#data-exchange-based-on-pubsub-mechanism)
-- [block chain,hash chain and hashc](#block-chain,hash-chain-and-hashc)
-- [transaction,transaction pool and hashl](#transaction,transaction-pool-and-hashl)
+- [block chain,hash chain and hashc](#block-chain-,-hash-chain-and-hashc)
+- [transaction,transaction pool and hashl](#transaction-,-transaction-pool-and-hashl)
 - [block synchronization flow chart](#block-synchronization-flow-chart)
 
 
@@ -18,11 +18,11 @@ Documentation on the Implementation of taucoin on ipfs
 
 ![pubsubmechanism](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/dataexchangebasedonpubsubmechanism.jpg)
 
-## BLOCK CHAIN,HASH CHAIN AND HASHC
+## BLOCK CHAIN , HASH CHAIN AND HASHC
 
 ![dst](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockchainhashchainandhashc.jpg)
 
-## TRANSACTION,TRANSACTION POOL AND HASHL
+## TRANSACTION , TRANSACTION POOL AND HASHL
 
 ![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/transactiontransactionpoolandhashl.jpg)
 
