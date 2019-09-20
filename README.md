@@ -32,7 +32,6 @@ Documentation on the Implementation of taucoin on ipfs
 ![sddt](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blocksynchronizationflowchart.jpg)
 
 ## SYNC MODE
-
 Anyone is able to run a taucoin node on their mobile. This means that you can participate in validating transactions and blocks on tauchain. To speed up user's mining process, fast mining mode is used. Also to prevent excessive dependence on TAU IPFS nodes and as an individual node in tauchain, entire blocks will be fetched from IPFS network. Later is called full node mode.
 
 ### Fast mining mode
