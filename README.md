@@ -7,6 +7,7 @@ Documentation on the Implementation of taucoin on ipfs
 - [data exchange based on pubsub mechanism](#data-exchange-based-on-pubsub-mechanism)
 - [block chain hash chain and hashc](#block-chain-hash-chain-and-hashc)
 - [transactions transaction pool and hashl](#transactions-transaction-pool-and-hashl)
+- [voting for best hash pair](#voting-for-best-hash-pair)
 - [block synchronization flow chart](#block-synchronization-flow-chart)
 - [sync mode in mobile node](#sync-mode)
 
@@ -26,6 +27,10 @@ Documentation on the Implementation of taucoin on ipfs
 ## TRANSACTIONS TRANSACTION POOL AND HASHL
 
 ![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/transactiontransactionpoolandhashl.jpg)
+
+## VOTING FOR BEST HASH PAIR
+
+![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/votingforbesthashpair.jpg)
 
 ## BLOCK SYNCHRONIZATION FLOW CHART
 
