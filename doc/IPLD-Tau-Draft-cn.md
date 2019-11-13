@@ -79,7 +79,7 @@ Merkle-DAG一旦产生，那么其中文件路径的表达是需要解决的问�
 /ipfs/QmNu9vByGwjdnvRuyqTMi35FQvznEQ6qNLVnBFNxvJA2ip/a/b/c/d
 ```
 # IPLD TAU
-交易和区块结构的详细信息。
+[交易和区块结构的详细信息](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
 ## Method
 参考 [ipfs dag put相关操作](https://docs.ipfs.io/reference/api/cli/#ipfs-dag-put)
 ## Usage and Examples
