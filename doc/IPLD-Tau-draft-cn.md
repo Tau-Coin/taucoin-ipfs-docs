@@ -86,7 +86,7 @@ Merkle-DAG一旦产生，那么其中文件路径的表达是需要解决的问�
 参考 [ipfs dag put相关操作](https://docs.ipfs.io/reference/api/cli/#ipfs-dag-put)
 ## Usage and Examples
 ```
-ipfs dag get blockid
+ipfs dag get blockcid
 ```
 you will get:
 ```
@@ -111,17 +111,19 @@ you will get:
 ```
 
 ```
-ipfs dag get blockid/forger
+ipfs dag get blockcid/forger
 ```
 you will get `0xe0e6c781b8cba08bc8407eac0101b668d1fa6f49`.
 
 ```
-ipfs dag get blockid/transactions
+ipfs dag get blockcid/transactions
 ```
-you will get `[txhash1, txhash2…txhash50]`.
+you will get `[txcid1, txcid2…txcid50]`.
+
+`txcid1` means the cid of first transaction in the block.
 
 ```
-ipfs dag get blockid/transactions/0 | ipfs dag get blockid/transactions/txhash1 | ipfs dag get txhash1
+ipfs dag get blockcid/transactions/0 || ipfs dag get blockcid/transactions/txcid1 || ipfs dag get txcid1
 ```
 you will get:
 ```
