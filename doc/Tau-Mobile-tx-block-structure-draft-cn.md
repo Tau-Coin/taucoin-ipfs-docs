@@ -61,7 +61,7 @@ Total size: 157 Bytes
 - 考虑forum应用以及交易过期问题，去除expiretime字段；
 - 考虑IPLD和区块数据信息统一以及效率问题，其他设计字段有效保留；
 - 考虑多链结构下的交易信息流，加入chainid-genesis transaction hash字段以做区分；  
-
+---
 ### 20191125
 - New name transaction中加入profile字段，扩展为个人简介交易；
 - new chain, message transaction中的abstract字段名修改为title；
@@ -120,10 +120,3 @@ Total size: 216 Bytes
 11  | content      | 32           | 回复贴的具体内容，以IPFS Cid形式存在
   
 Total size: 340 Bytes
-  
-  
-  
-  
- 
-
-
