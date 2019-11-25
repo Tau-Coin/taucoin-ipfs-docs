@@ -2,9 +2,11 @@
 
 ## 节点pub的内容
 
-![blockroot]( https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockroot.jpg )  
+理论上，节点之间只用pubsub两个topic就可以处理完成区块（包括链的投票、同步、新区块的同步）和交易（包括现存交易池的同步、新交易的同步）相关的信息交换。区块的topic是每个节点定时pub自己本地的一个root cid，该root cid连接到144个最新高度的区块，这里以mutable range=7为例说明；交易的topic也是每个节点定时pub自己本地的一个root cid，该root cid连接到一定数量的最高交易费的交易，比如前500笔交易费的交易，有了该root cid，其它节点可以按需下载一定数量的交易。由于所有之前获取过的内容，第二次获取会优先从本地拿，所以也不用担心重复带来的流量问题。
 
-每个节点pub的内容为mutable range=144个区块所对应的root cid，这里以mutable range=7为例说明。  
+![blockrootcid]( https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockrootcid.jpg )  
+
+![txrootcid]( https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/txrootcid.jpg )    
 
 ## 选链
 
