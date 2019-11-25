@@ -103,7 +103,7 @@ Size: 132 Bytes
   
 Total size: 360 Bytes
 
-### New name transaction
+### Personal info transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------------|----------------|------------------|----------------------
 9   | contactname      | 32         | 论坛板块中可用于直接联系的方式，暂定为telegram id
