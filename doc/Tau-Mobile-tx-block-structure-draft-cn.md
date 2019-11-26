@@ -12,8 +12,8 @@
  9   |timestamp    | 4        | unix timestamp
  10  |bootstrapid  | 32       | initial ipfs tau bootstrap nodes
  11  |previoushash | 32       |  necessary in blockchain
- 12  |mmerkleroot  | 32       |  message transaction merkle root
- 13  |cmerkleroot  | 32       |  coins transaction merkle root
+ 12  |mtxroot      | 32       |  message transaction root
+ 13  |ctxroot      | 32       |  coins transaction  root
  14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
  15  |transactions | 32* 50   | ipfs cid format
  
@@ -51,6 +51,11 @@ Total size: 157 Bytes
 ```
 独立出1-14的区块头信息部分，区块签名针对1-13部分；非矿工用户子只需要同步区块头信息+信息交易。
 ```
+---
+### 20191126
+- 区块中的交易merkle root，改为单层交易root, ![如图](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/txrootcid.jpg)
+- Merkle root对于本应用而言，无优势，单层root结构可以无缝对接IPLD数据格式，效率也高；
+
 ##### 问题讨论：
 ```
 区块头中的交易部分是否需要和merkle root类似，独立为两部分(信息交易+转账交易)？
