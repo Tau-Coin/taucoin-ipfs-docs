@@ -12,12 +12,15 @@
  9   |timestamp    | 4        | unix timestamp
  10  |bootstrapid  | 32       | initial ipfs tau bootstrap nodes
  11  |previoushash | 32       |  necessary in blockchain
- 12  |mtxroot      | 32       |  message transaction root
- 13  |ctxroot      | 32       |  coins transaction  root
- 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
- 15  |transactions | 32* 50   | ipfs cid format
+ 12  |stateroot    | 32       |  root hash of state database
+ 13  |mtxroot      | 32       |  message transaction root
+ 14  |ctxroot      | 32       |  coins transaction  root
+ 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+ 16  |transactions | 32* 50   | ipfs cid format
  
- Total size: 1907 Bytes
+ Block Header
+ 1-> 15, 339 Bytes
+ Block total size: 1939 Bytes
  
 # Transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -47,9 +50,12 @@ Total size: 157 Bytes
 - 根据上述需求，加入两个区分交易类型的merkle root：mmerkleroot, cmerkleroot;  
    - mmerkleroot: 信息交易(New chain transaction, persnonal info transaction, new message transaction)的MR
    - cmerkleroot: 代币转账交易的MR
+---
+### 20191204
+- 考虑以太坊的设计，实现快速同步账户状态数据，增加stateroot字段；
 
 ```
-独立出1-14的区块头信息部分，区块签名针对1-13部分；非矿工用户子只需要同步区块头信息+信息交易。
+stateroot是Merkle Patricia Trie的根哈希.
 ```
 ---
 ### 20191126
