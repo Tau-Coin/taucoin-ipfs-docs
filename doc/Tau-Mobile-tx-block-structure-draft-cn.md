@@ -13,14 +13,13 @@
  10  |bootstrapid  | 32       | initial ipfs tau bootstrap nodes
  11  |previoushash | 32       |  necessary in blockchain
  12  |stateroot    | 32       |  root hash of state database
- 13  |mtxroot      | 32       |  message transaction root
- 14  |ctxroot      | 32       |  coins transaction  root
- 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
- 16  |transactions | 32* 50   | ipfs cid format
+ 13  |mtxroot      | 32       |  transaction root
+ 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+ 15  |transactions | 32* 50   | ipfs cid format
  
  Block Header
- 1-> 15, 339 Bytes
- Block total size: 1939 Bytes
+ 1-> 15, 307 Bytes
+ Block total size: 1907 Bytes
  
 # Transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -53,10 +52,11 @@ Total size: 157 Bytes
 ---
 ### 20191204
 - 考虑以太坊的设计，实现快速同步账户状态数据，增加stateroot字段；
-
 ```
 stateroot是Merkle Patricia Trie的根哈希.
 ```
+- MPT树的Value记录了账户状态(余额，Power-Nounce, 信息交易)，根据MPT来获取账户信息交易；
+- 信息交易的获取根源从stateroot出发，因而将mtxroot和ctxroot合并为txroot；
 ---
 ### 20191126
 - 区块中的交易merkle root，改为单层交易root, ![如图](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/txrootcid.jpg)
