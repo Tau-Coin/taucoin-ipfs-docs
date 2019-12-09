@@ -18,7 +18,7 @@
  15  |transactions | 32* 50   | ipfs cid format
  
  Block Header
- 1-> 15, 307 Bytes
+ 1-> 14, 307 Bytes
  Block total size: 1907 Bytes
  
 # Transaction
@@ -50,6 +50,10 @@ Total size: 157 Bytes
    - mmerkleroot: 信息交易(New chain transaction, persnonal info transaction, new message transaction)的MR
    - cmerkleroot: 代币转账交易的MR
 ---
+### 20191126
+- 区块中的交易merkle root，改为单层交易root, ![如图](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/txrootcid.jpg)
+- Merkle root对于本应用而言，无优势，单层root结构可以无缝对接IPLD数据格式，效率也高；
+---
 ### 20191204
 - 考虑以太坊的设计，实现快速同步账户状态数据，增加stateroot字段；
 ```
@@ -57,14 +61,11 @@ stateroot是Merkle Patricia Trie的根哈希.
 ```
 - MPT树的Value记录了账户状态(余额，Power-Nounce, 信息交易)，根据MPT来获取账户信息交易；
 - 信息交易的获取根源从stateroot出发，因而将mtxroot和ctxroot合并为txroot；
----
-### 20191126
-- 区块中的交易merkle root，改为单层交易root, ![如图](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/txrootcid.jpg)
-- Merkle root对于本应用而言，无优势，单层root结构可以无缝对接IPLD数据格式，效率也高；
+
 
 ##### 问题讨论：
 ```
-区块头中的交易部分是否需要和merkle root类似，独立为两部分(信息交易+转账交易)？
+Shared MPT的实现方案？
 ```
 
 ## Transaction
