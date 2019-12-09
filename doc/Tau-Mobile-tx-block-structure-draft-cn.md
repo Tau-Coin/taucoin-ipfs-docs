@@ -11,9 +11,9 @@
  8   |forger       | 20       | block forger address, for ipld index and show
  9   |timestamp    | 4        | unix timestamp
  10  |bootstrapid  | 32       | initial ipfs tau bootstrap nodes
- 11  |previoushash | 32       |  necessary in blockchain
- 12  |stateroot    | 32       |  root hash of state database
- 13  |mtxroot      | 32       |  transaction root
+ 11  |previoushash | 32       | necessary in blockchain
+ 12  |stateroot    | 32       | root hash of state database
+ 13  |txroot       | 32       | transaction root
  14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
  15  |transactions | 32* 50   | ipfs cid format
  
