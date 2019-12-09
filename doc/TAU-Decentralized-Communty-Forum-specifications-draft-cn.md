@@ -6,18 +6,20 @@ go-ethereum-1.9.3
 ## 开发模块
 #### 1. 区块、交易相关
 ##### 区块
-	1.1 区块结构
+
+###### 1.1 [区块结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
 	
-	1.2 创世区块
+###### 1.2 创世区块
 	
-	1.3 区块大小，出块频率
+###### 1.3 [区块大小，出块频率](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/pot.md)
 
 ##### 交易
+
 单链产品的交易类型：personal info tx, message tx, transfer tx
 
 多链产品的交易类型：new chain tx, personal info tx, message tx, transfer tx
 
-	1.4 交易结构
+###### 1.4 [交易结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
 	
 #### 2. 数据流(网络数据请求，获取，存储)
 
