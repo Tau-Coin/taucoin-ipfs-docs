@@ -9,7 +9,7 @@ go-ethereum-1.9.3
 
 ###### 1.1 [区块结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
 	
-###### 1.2 创世区块
+###### 1.2 [创世区块](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-genesis-block-cn.md)
 	
 ###### 1.3 [区块大小，出块频率](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/pot.md)
 
@@ -66,9 +66,26 @@ go-ethereum-1.9.3
 #### 6. 节点管理模块
 
 ## 开发计划
-正在以及近期需要解决的问题：
+
+### 单链Forum产品-20200228
+#### 第一阶段-开发项目-Now->20200110
+交易区块存储相关
 ```
-1.1-> 1.4
-2.1
-4.1
+1.1-1.4, 2.4-2.5
 ```
+---
+同步网络通信相关
+```
+2.1-2.3, 4.1, 5.3
+```
+#### 第二阶段-开发项目-20200111->20200214
+共识挖矿出块相关
+```
+3.1, 4.2-4.3
+```
+---
+APP UI层交互相关
+```
+5.1-5.2
+```
+#### 第三阶段-测试-20200215->20200228
