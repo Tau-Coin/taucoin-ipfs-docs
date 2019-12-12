@@ -7,7 +7,7 @@ go-ethereum-1.9.3
 #### 1. 区块、交易相关
 ##### 区块
 
-###### 1.1 [区块结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
+###### 1.1 [区块结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-block-tx-structure-draft-cn.md)
 	
 ###### 1.2 [创世区块](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-genesis-block-cn.md)
 	
@@ -19,7 +19,10 @@ go-ethereum-1.9.3
 
 多链产品的交易类型：new chain tx, personal info tx, message tx, transfer tx
 
-###### 1.4 [交易结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-Mobile-tx-block-structure-draft-cn.md)
+###### 1.4 [交易结构](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-block-tx-structure-draft-cn.md)
+
+###### 1.5 [交易费分配](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-tx-fee-distribution-draft-cn.md)
+
 	
 #### 2. 数据流(网络数据请求，获取，存储)
 
