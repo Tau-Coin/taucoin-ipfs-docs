@@ -10,7 +10,7 @@ fast mode: 简单的说 fast sync的模式会下载区块头，区块体和收�
 - 类似于原有的同步，验证区块头的一致性（POW，总难度等）；
 - 下载由区块头定义的交易收据,而不是处理区块；
 - 存储下载的区块链和收据链，启用所有历史查询；
-- 当链条达到最近的状态（头部 - 1024个块）时，暂停同步： 
+- 当链条达到最近的状态（头部 - 1024个块，也即是**pivot point**）时，暂停同步： 
   - 获取由 pivot point定义的区块的完整的Merkel Patricia Trie状态；
   - 对于Merkel Patricia Trie里面的每个账户，获取他的合约代码和中间存储的Trie；
 - 当Merkel Patricia Trie下载成功后，将pivot point定义的区块作为当前的区块头；
@@ -18,8 +18,8 @@ fast mode: 简单的说 fast sync的模式会下载区块头，区块体和收�
 
 #### taucoin
 
-taucoin的同步基本上借鉴ethereum的同步过程，也是分full mode和fast mode:
+taucoin的同步基本上借鉴ethereum的同步过程，区块同步之前会有一个选链的过程，具体可参考[选链过程](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/selectchain.md)，一般选链机制包括两个部分，发现的链与本地链的区块高度差在mutable range之外进行的投票选择机制和高度差在mutable range之内的最长链快速选择机制，理论上，离最新高度越远的区块共识度越高，mutable range之外的区块，全网具有的一致性应该达到一定的标准（一致性标准矿工可以根据个人情况指定，比如为90%），否则要根据社区信息进行人工干预。选链一旦完成就可以开始同步区块，根据是否验证历史区块也是分为full mode和fast mode两种模式:
 
-full mode: 参考eth，先同步区块头，再同步区块体，从创世区块开始执行交易；
+full mode: 先是对区块高度差在mutable range的情况进行投票选择，同步时先递归同步区块头，直到到达创世区块，然后从创世区块开始，边同步区块体，边执行交易；同步的高度差小于mutable range之后，进入最长链快速同步阶段，同样也是先同步区块头，再同步区块体，同时执行交易直到最新区块，新区块来了接着执行验证；
 
-fast mode: 参考eth，pivot point为距离最新高度mutable range距离的区块，获取MPT每个账户合约代码这里也要相应地换成获取信息交易。
+fast mode: 和full mode基本相同，唯一的区别是第一次投票同步时会选择一个pivot point，在这个高度进行statedb的同步，在此高度之后的区块都会执行交易。为了选择fast mode的pivot point，我们将第一次投票出来的达到一致性标准的区块高度记为h1，则投票有效的情况下应有 0<=h1<=mutable range，为了确保pivot point在正确的社区链mutable range之外，将pivot point设置为**h1 - mutable range**。
