@@ -24,3 +24,42 @@ Remove tx->定时删除一些很久上不了链的交易。
 
 很久上不了链的交易会有heart beats来记录交易最近操作的时间，还有一个pending nonce内存数据库用来辅助记录pending里对应账户的nonce增长情况。
 
+#### 交易池配置说明：
+
+var DefaultTxPoolConfig = TxPoolConfig{
+
+  Journal:  "transactions.rlp",
+
+  Rejournal: time.Hour,
+
+
+
+  PriceLimit: 1,
+
+  PriceBump: 10,
+
+
+
+  AccountSlots: 16,
+
+  GlobalSlots: 4096,
+
+  AccountQueue: 64,
+
+  GlobalQueue: 1024,
+
+
+
+  Lifetime: 3 * time.Hour,
+
+}
+
+以上为eth的交易池默认配置，考虑到taucoin后面可能会允许负交易费的交易，作相应的调整：
+
+PriceLimit为限制进入交易池的最小price，taucoin没有price概念而是Fee，目前暂时设置Fee>=0，后面版本可考虑小于零的情况；
+
+PriceBump为相同账户相同nonce的交易替换比例门槛值，同样的对应taucoin的FeeBump，目前暂时设置FeeBump=0，后面版本考虑取消；
+
+AccountSlots、GlobalSlots、AccountQueue、GlobalQueue对应pengding和queue交易池每个账户存放交易的上限以及总量上限，目前暂时保持不动；
+
+Lifetime为交易池里交易的生命周期，taucoin目前去除了expiretime字段，目前可默认此值用于交易过期。
