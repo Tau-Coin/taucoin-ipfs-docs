@@ -68,6 +68,14 @@ stateroot是Merkle Patricia Trie的根哈希.
 Shared MPT的实现方案？
 ```
 
+
+### 20200213
+- 考虑IPFS效率问题，block header中加入MultiAddress信息：IP Info+ NodeId Info
+- 交易中在以后版本中考虑中继节点信息
+---
+### 20200214
+- 经过讨论，IPFS 可以利用dnt findpeer找到NodeId Info对应的IP Info, 只保留NodeId
+
 ## Transaction
 ### 20191118
 - 考虑forum应用以及交易过期问题，去除expiretime字段；
