@@ -1,5 +1,5 @@
 # Modified Notes
-## 20200213
+
 ### core-state_processor.go
 
 ApplyTransaction
@@ -57,3 +57,16 @@ depth
 		/tau/api_tracer.go
 	还有一些test文件
 	state_prefetch.go和blockchain.go的一些操作
+
+### core-blockchain.go 
+1. 去除vmConfig相关方法
+
+	Processor中去除vmConfig
+	ApplyTransaction中去除vmConfig
+
+2. 去除NewBlockChain-> vmConfig传入
+
+### core-vm-interpreter.go
+只留了EVMInterpreter
+
+### Contract.go 
