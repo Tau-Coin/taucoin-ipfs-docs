@@ -27,13 +27,14 @@
 1   | version       | 1        |  "0x1"
 2   | option        | 1        |  "0x1"
 3   | chainid       | 32       |  "0x0"
-4   | nounce        | 8        |  "0x1"
-5   | timestamp     | 4        | tx timestamp
-6   | sender        | 20       | for ipld index and show
-7   | receiver      | 20       | tx receiver
-8   | amount        | 5        | transfer amount
-9   | fee           | 1        | transaction fee
-10  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+4   | blockhash     | 32       |  "0x0"
+5   | nounce        | 8        |  "0x1"
+6   | timestamp     | 4        | tx timestamp
+7   | sender        | 20       | for ipld index and show
+8   | receiver      | 20       | tx receiver
+9   | amount        | 5        | transfer amount
+10  | fee           | 1        | transaction fee
+11  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
   
 Total size: 157 Bytes
 
@@ -109,6 +110,10 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
   - 3 -> 包含视频
   - ...
 
+
+### 20200214
+- 交易中加入主链BlockHash, 以达到'TaPOS', [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
+
 #### 多链应用下的交易类型，目前草稿：
 ### General info
  No              |  Key           | Size-Byte        |  Notes
@@ -116,11 +121,12 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 1   | version           | 1        | "0x1"
 2   | option            | 1        | "0x1"
 3   | chainid           | 32       | "0x0"
-4   | nounce            | 8        | "0x1"
-5   | timestamp         | 4        | tx timestamp
-6   | sender            | 20       | for ipld index and show
-7   | fee               | 1        | transaction fee
-8   | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+4   | blockhash         | 32       | "0x0"
+5   | nounce            | 8        | "0x1"
+6   | timestamp         | 4        | tx timestamp
+7   | sender            | 20       | for ipld index and show
+8   | fee               | 1        | transaction fee
+9   | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
 Size: 132 Bytes
 
@@ -129,49 +135,7 @@ Size: 132 Bytes
  ----------------|----------------|------------------|----------------------
 9   | name             | 20       | 论坛版块名字
 10  | contact          | 32       | 版块管理员联系方式，暂定为telegram id
-11  | title            | 144      | 论坛版块的标题，方便快捷浏览和内容定位
-12  | description      | 32       | 论坛版块的描述细节，以IPFS Cid形式存在
-  
-Total size: 360 Bytes
-
-### Personal info transaction
- No              |  Key           | Size-Byte        |  Notes
- ----------------------|----------------|------------------|----------------------
-9   | contactname      | 32         | 论坛板块中可用于直接联系的方式，暂定为telegram id
-10  | name             | 20         | 论坛板块中的昵称
-11  | profile          | 32         | 论坛板块中的个人资料，以IPFS Cid形式存在；
-  
-Total size: 216 Bytes
-
-### New message transaction
- No              |  Key           | Size-Byte        |  Notes
- ----------------|----------------|------------------|----------------------
-9   | referid      | 32           | 被回复帖子的交易哈希
-10  | title        | 144          | 回复贴的标题，方便快捷浏览和内容定位
-11  | content      | 32           | 回复贴的具体内容，以IPFS Cid形式存在
-  
-Total size: 340 Bytes
-#### 多链应用下的交易类型，目前草稿：
-### General info
- No              |  Key           | Size-Byte        |  Notes
- -------------------|----------------|------------------|----------------------
-1   | version           | 1        | "0x1"
-2   | option            | 1        | "0x1"
-3   | chainid           | 32       | "0x0"
-4   | nounce            | 8        | "0x1"
-5   | timestamp         | 4        | tx timestamp
-6   | sender            | 20       | for ipld index and show
-7   | fee               | 1        | transaction fee
-8   | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
-
-Size: 132 Bytes
-
-### New chain transaction
- No              |  Key           | Size-Byte        |  Notes
- ----------------|----------------|------------------|----------------------
-9   | name             | 20       | 论坛版块名字
-10  | contact          | 32       | 版块管理员联系方式，暂定为telegram id
-11  | title            | 256      | 论坛版块的标题，内容摘要，抽象hash等
+11  | intro            | 256      | 论坛版块的标题，内容摘要，抽象hash等
 12  | description      | 33       | 论坛版块的描述细节，message type+ IPFS Cid形式存在
   
 Total size: 360 Bytes
