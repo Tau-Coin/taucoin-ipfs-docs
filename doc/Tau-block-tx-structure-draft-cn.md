@@ -16,11 +16,11 @@
  13  |txroot       | 32       | transaction root
  14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
  15  |transactions | 32* 50   | ipfs cid format
- 
+
  Block Header
  1-> 14, 307 Bytes
  Block total size: 1907 Bytes
- 
+
 # Transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
@@ -35,7 +35,7 @@
 9   | amount        | 5        | transfer amount
 10  | fee           | 1        | transaction fee
 11  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
-  
+
 Total size: 157 Bytes
 
 # Modified Notes
@@ -114,7 +114,12 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 ### 20200214
 - 交易中加入主链BlockHash, 以达到'TaPOS', [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
 
+### 20200218
+
+- 对于上链的cid对应的文件大小，矿工要做一次验证以防攻击
+
 #### 多链应用下的交易类型，目前草稿：
+
 ### General info
  No              |  Key           | Size-Byte        |  Notes
  -------------------|----------------|------------------|----------------------
@@ -137,7 +142,7 @@ Size: 132 Bytes
 10  | contact          | 32       | 版块管理员联系方式，暂定为telegram id
 11  | intro            | 256      | 论坛版块的标题，内容摘要，抽象hash等
 12  | description      | 33       | 论坛版块的描述细节，message type+ IPFS Cid形式存在
-  
+
 Total size: 360 Bytes
 
 ### Personal info transaction
@@ -146,7 +151,7 @@ Total size: 360 Bytes
 9   | contactname      | 32         | 论坛板块中可用于直接联系的方式，暂定为telegram id
 10  | name             | 20         | 论坛板块中的昵称
 11  | profile          | 32         | 论坛板块中的个人资料，以IPFS Cid形式存在；
-  
+
 Total size: 216 Bytes
 
 ### New message transaction
@@ -155,5 +160,5 @@ Total size: 216 Bytes
 9   | referid      | 32           | 被回复帖子的交易哈希
 10  | intro        | 256          | 回复贴的标题，内容摘要，抽象hash等
 11  | content      | 33           | 回复贴的具体内容，message type+ IPFS Cid形式存在
-  
+
 Total size: 340 Bytes
