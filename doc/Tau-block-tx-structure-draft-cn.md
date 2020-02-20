@@ -116,6 +116,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 
 ### 20200218
 
+- 还原之前的讨论内容，block header中加入MultiAddress信息：IP Info+ NodeId Info
 - 对于上链的cid对应的文件大小，矿工要做一次验证以防攻击
 
 #### 多链应用下的交易类型，目前草稿：
