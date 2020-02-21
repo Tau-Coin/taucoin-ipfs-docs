@@ -117,7 +117,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 - 交易中加入主链BlockHash, 以达到'TaPOS', [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
 ---
 ### 20200218
-- 上链的cid对应的文件大小，矿工要做一次验证以防攻击.
+- 上链的CID对应的文件大小，矿工要做一次验证以防攻击. [CID对应文件说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Taucoin-ipfs-cid-instructions-cn.md)
 
 #### 多链应用下的交易类型，目前草稿：
 
