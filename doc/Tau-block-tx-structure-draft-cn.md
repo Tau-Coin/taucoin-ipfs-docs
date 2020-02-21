@@ -84,7 +84,7 @@ Shared MPT的实现方案？
 
 ---
 ### 20200221
-- block header中加入矿工节点信息，该信息仅表现为IPFS cid形式。[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions-cn.md)
+- block header中加入矿工节点信息，该信息仅表现为IPFS cid形式。[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions.md)
 
 
 ## Transaction
@@ -131,7 +131,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 ### 20200221
 - 交易中加入可选字段：Sender节点信息，该信息仅表现为IPFS cid形式。
 - 交易中加入可选字段：中继节点信息，该信息以MultiAddress的形式加入，为可选字段。
-- 上述两个可选字段的加入，[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions-cn.md)。
+- 上述两个可选字段的加入，[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions.md)。
 
 ---
 
