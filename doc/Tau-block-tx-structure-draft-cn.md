@@ -69,13 +69,16 @@ stateroot是Merkle Patricia Trie的根哈希.
 Shared MPT的实现方案？
 ```
 
-
 ### 20200213
 - 考虑IPFS效率问题，block header中加入MultiAddress信息：IP Info+ NodeId Info
 - 交易中在以后版本中考虑中继节点信息
 ---
 ### 20200214
 - 经过讨论，IPFS 可以利用dnt findpeer找到NodeId Info对应的IP Info, 只保留NodeId
+---
+### 20200218
+- 还原之前的讨论内容，block header中加入MultiAddress信息：IP Info+ NodeId Info，[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/p2p-network-relay-solution.md)
+
 
 ## Transaction
 ### 20191118
@@ -109,15 +112,12 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
   - 2 -> 包含图片
   - 3 -> 包含视频
   - ...
-
-
+---
 ### 20200214
 - 交易中加入主链BlockHash, 以达到'TaPOS', [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
-
+---
 ### 20200218
-
-- 还原之前的讨论内容，block header中加入MultiAddress信息：IP Info+ NodeId Info
-- 对于上链的cid对应的文件大小，矿工要做一次验证以防攻击
+- 上链的cid对应的文件大小，矿工要做一次验证以防攻击.
 
 #### 多链应用下的交易类型，目前草稿：
 
