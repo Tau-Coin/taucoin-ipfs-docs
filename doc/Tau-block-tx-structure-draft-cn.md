@@ -8,18 +8,17 @@
  5   |basetarget     | 8          |  used for POT calculation
  6   |cumulativedifficulty    | 8       | fork judgement
  7   |generationsignature     | 32      | used for POT calculation
- 8   |forger       | 20       | block forger address, for ipld index and show
- 9   |timestamp    | 4        | unix timestamp
- 10  |bootstrapid  | 32       | initial ipfs tau bootstrap nodes
- 11  |previoushash | 32       | necessary in blockchain
- 12  |stateroot    | 32       | root hash of state database
- 13  |txroot       | 32       | transaction root
- 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
- 15  |transactions | 32* 50   | ipfs cid format
+ 8   |tforger      | 20       | block forger address in TAU system, for IPLD index and display
+ 9   |iforger      | 46       | block forger address in IPFS system, for mining connection
+ 10  |relayma      | 72       | IPFS TAU relay nodes in multiaddress format
+ 11  |timestamp    | 4        | unix timestamp
+ 12  |previoushash | 32       | necessary in blockchain
+ 13  |stateroot    | 32       | root hash of state database
+ 14  |txroot       | 32       | transaction root
+ 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+ 16  |transactions | 32* 50   | IPFS cid format
 
- Block Header
- 1-> 14, 307 Bytes
- Block total size: 1907 Bytes
+9, 10为可选字段。
 
 # Transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -30,13 +29,15 @@
 4   | blockhash     | 32       |  "0x0"
 5   | nounce        | 8        |  "0x1"
 6   | timestamp     | 4        | tx timestamp
-7   | sender        | 20       | for ipld index and show
-8   | receiver      | 20       | tx receiver
-9   | amount        | 5        | transfer amount
-10  | fee           | 1        | transaction fee
-11  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+7   | tsender       | 20       | tx sender address in TAU system, for IPLD index and display
+8   | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS
+9   | relayma       | 72       | relay multiaddress in IPFS system, for adding relay nodes
+10  | receiver      | 20       | tx receiver
+11  | amount        | 5        | transfer amount
+12  | fee           | 1        | transaction fee
+13  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-Total size: 189 Bytes
+4, 8, 9为可选字段。
 
 # Modified Notes
 ## Block
@@ -72,12 +73,18 @@ Shared MPT的实现方案？
 ### 20200213
 - 考虑IPFS效率问题，block header中加入MultiAddress信息：IP Info+ NodeId Info
 - 交易中在以后版本中考虑中继节点信息
+
 ---
 ### 20200214
-- 经过讨论，IPFS 可以利用dnt findpeer找到NodeId Info对应的IP Info, 只保留NodeId
+- 经过讨论，IPFS 可以利用dnt findpeer找到NodeId Info对应的IP Info, 只保留NodeId。
+
 ---
 ### 20200218
-- 还原之前的讨论内容，block header中加入MultiAddress信息：IP Info+ NodeId Info，[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/p2p-network-relay-solution.md)
+- 还原之前的讨论内容，block header中加入中继节点信息，该信息以MultiAddress形式加入。[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/p2p-network-relay-solution.md)
+
+---
+### 20200221
+- block header中加入矿工节点信息，该信息仅表现为IPFS cid形式。[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions-cn.md)
 
 
 ## Transaction
@@ -101,7 +108,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
   - 2 -> 包含图片
   - 3 -> 包含视频
   - ...
-
+---
 ### 20200205
 - new chain, message transaction中的title字段名修改为intro；
 - intro由三部分組成：title+ 內容摘要(前144個bytes)+ IPFS Cid hash(图片hash, voice Hash等)
@@ -114,10 +121,19 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
   - ...
 ---
 ### 20200214
-- 交易中加入主链BlockHash, 以达到'TaPOS', [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
+- 交易中加入主链BlockHash, 以达到'TaPOS'。 [TaPOS说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/TaPoS.md)
+
 ---
 ### 20200218
 - 上链的CID对应的文件大小，矿工要做一次验证以防攻击. [CID对应文件说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Taucoin-ipfs-cid-instructions-cn.md)
+
+---
+### 20200221
+- 交易中加入可选字段：Sender节点信息，该信息仅表现为IPFS cid形式。
+- 交易中加入可选字段：中继节点信息，该信息以MultiAddress的形式加入，为可选字段。
+- 上述两个可选字段的加入，[详见说明](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-address-instructions-cn.md)。
+
+---
 
 #### 多链应用下的交易类型，目前草稿：
 
@@ -130,36 +146,34 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 4   | blockhash         | 32       | "0x0"
 5   | nounce            | 8        | "0x1"
 6   | timestamp         | 4        | tx timestamp
-7   | sender            | 20       | for ipld index and show
-8   | fee               | 1        | transaction fee
-9   | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+7   | tsender           | 20       | tx sender address in TAU system, for IPLD index and display
+8   | isender           | 46       | tx sender address in IPFS system, for locating tx file in IPFS
+9   | relayma           | 72       | relay multiaddress in IPFS system, for adding relay nodes
+10  | fee               | 1        | transaction fee
+11  | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-Size: 164 Bytes
+4, 8, 9为可选字段。
 
 ### New chain transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
-9   | name             | 20       | 论坛版块名字
-10  | contact          | 32       | 版块管理员联系方式，暂定为telegram id
-11  | intro            | 256      | 论坛版块的标题，内容摘要，抽象hash等
-12  | description      | 33       | 论坛版块的描述细节，message type+ IPFS Cid形式存在
+12  | name             | 20       | 论坛版块名字
+13  | contact          | 32       | 版块管理员联系方式，暂定为telegram id
+14  | intro            | 256      | 论坛版块的标题，内容摘要，抽象hash等
+15  | description      | 33       | 论坛版块的描述细节，message type+ IPFS Cid形式存在
 
-Total size: 164+ 341= 505 Bytes
 
 ### Personal info transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------------|----------------|------------------|----------------------
-9   | contactname      | 32         | 论坛板块中可用于直接联系的方式，暂定为telegram id
-10  | name             | 20         | 论坛板块中的昵称
-11  | profile          | 32         | 论坛板块中的个人资料，以IPFS Cid形式存在；
+12  | contactname      | 32         | 论坛板块中可用于直接联系的方式，暂定为telegram id
+13  | name             | 20         | 论坛板块中的昵称
+14  | profile          | 32         | 论坛板块中的个人资料，以IPFS Cid形式存在；
 
-Total size: 164+ 84= 248 Bytes
 
 ### New message transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
-9   | referid      | 32           | 被回复帖子的交易哈希
-10  | intro        | 256          | 回复贴的标题，内容摘要，抽象hash等
-11  | content      | 33           | 回复贴的具体内容，message type+ IPFS Cid形式存在
-
-Total size: 164+ 321= 485 Bytes
+12  | referid      | 32           | 被回复帖子的交易哈希
+13  | intro        | 256          | 回复贴的标题，内容摘要，抽象hash等
+14  | content      | 33           | 回复贴的具体内容，message type+ IPFS Cid形式存在
