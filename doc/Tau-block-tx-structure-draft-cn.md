@@ -36,7 +36,7 @@
 10  | fee           | 1        | transaction fee
 11  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-Total size: 157 Bytes
+Total size: 189 Bytes
 
 # Modified Notes
 ## Block
@@ -134,7 +134,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 8   | fee               | 1        | transaction fee
 9   | signature         | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-Size: 132 Bytes
+Size: 164 Bytes
 
 ### New chain transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -144,7 +144,7 @@ Size: 132 Bytes
 11  | intro            | 256      | 论坛版块的标题，内容摘要，抽象hash等
 12  | description      | 33       | 论坛版块的描述细节，message type+ IPFS Cid形式存在
 
-Total size: 360 Bytes
+Total size: 164+ 341= 505 Bytes
 
 ### Personal info transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -153,7 +153,7 @@ Total size: 360 Bytes
 10  | name             | 20         | 论坛板块中的昵称
 11  | profile          | 32         | 论坛板块中的个人资料，以IPFS Cid形式存在；
 
-Total size: 216 Bytes
+Total size: 164+ 84= 248 Bytes
 
 ### New message transaction
  No              |  Key           | Size-Byte        |  Notes
@@ -162,4 +162,4 @@ Total size: 216 Bytes
 10  | intro        | 256          | 回复贴的标题，内容摘要，抽象hash等
 11  | content      | 33           | 回复贴的具体内容，message type+ IPFS Cid形式存在
 
-Total size: 340 Bytes
+Total size: 164+ 321= 485 Bytes
