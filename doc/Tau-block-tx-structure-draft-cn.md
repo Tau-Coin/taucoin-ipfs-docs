@@ -9,7 +9,7 @@
  6   |cumulativedifficulty    | 8       | fork judgement
  7   |generationsignature     | 32      | used for POT calculation
  8   |tforger      | 20       | block forger address in TAU system, for IPLD index and display
- 9   |iforger      | 46       | block forger address in IPFS system, for mining connection
+ 9   |iforger      | 46       | block forger address in IPFS system, for forging connection
  10  |relayma      | 72       | IPFS TAU relay nodes in multiaddress format
  11  |timestamp    | 4        | unix timestamp
  12  |previoushash | 32       | necessary in blockchain
