@@ -1,7 +1,9 @@
-### Forum multimedia design
+## Forum multimedia design
+
 由于论坛业务需求可以使用文字、图片、音频、视频媒体表现形式，同时项目采用IPFS存储，文件Hash上链的核心技术方案。因此多媒体相关的实现方案如下：
 
-####图片
+###图片
+
 Android中常见的Image的类型有png、jpeg、jpg、gif、bmp、webp等。<br/>
 用户选择图片媒体逻辑步骤: <br/>
 1、用户可以选择用相机拍照或从相册选择一张照片（称源图片）；<br/>
@@ -13,7 +15,8 @@ Android中常见的Image的类型有png、jpeg、jpg、gif、bmp、webp等。<br
 注：<br/>
 矿工在打包时，用HashC获取到相关信息后，无需获取HashA内容验证，仅需要验证获取HashB内容验证即可。
 
-####音频
+###音频
+
 Audio的类型有mp3、amr、aac、war、flac、lamr等：默认格式为mp3。<br/>
 用户选择音频媒体逻辑步骤: <br/>
 1、用户可以选择录音或从文件系统中选择1个音频文件（称源音频）；<br/>
@@ -25,7 +28,8 @@ Audio的类型有mp3、amr、aac、war、flac、lamr等：默认格式为mp3。<
 注：<br/>
 矿工在打包时，用HashC获取到相关信息后，无需获取HashA内容验证，仅需要验证获取HashB内容验证即可。
 
-####视频
+###视频
+
 Video的类型有mp4、avi、3gpp、3gp、mov等：默认格式为mp4。</br>
 用户选择视频媒体逻辑步骤: <br/>
 1、用户可以选择相机录像或从相册中选择一视频文件（称源视频）；<br/>
