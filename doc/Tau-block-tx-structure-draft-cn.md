@@ -135,6 +135,11 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 
 ---
 
+### 20200226
+- 账户信息中只存在balance, nounce<=>power.
+- 在现有的框架下，可以适应于多链系统，Shared MPT不再适用。
+---
+
 #### 多链应用下的交易类型，目前草稿：
 
 ### General info
