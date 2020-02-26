@@ -1,4 +1,4 @@
-### Multimedia research
+### Multimedia compression research
 在Android手机多媒体开发中，随着手机硬件设备性能的提高，多媒体的文件的大小也显著提高，特别是视频文件。由于论坛业务需求可以使用的媒体包括文字、图片、音频、视频，就要面临图片、音频、视频上传流量和存储较大的问题，解决方案为对多媒体数据压缩处理。以下默认以小米9手机为例：
 
 #### 1、 Image的压缩
@@ -122,14 +122,14 @@ Audio的类型有mp3、amr、aac、war、flac、lamr等：默认格式为mp3。
   	 <td>12851.2</td>
     <td>44.1—CD</td>
     <td>2570.24</td>
-    <td>mp3 </td>
+    <td>mp3</td>
     <td>20.0</td>
     <td>8.19</td>
   </tr>
   <tr>
   	 <td>00:05:14</td>
   	 <td>12851.2</td>
-  	 <td>22.05—AM</td>
+  	 <td>22.05—FM</td>
     <td>1290.24</td>
     <td>mp3</td>
     <td>10.0</td>
