@@ -13,10 +13,9 @@
  10  |relayma      | 72       | IPFS TAU relay nodes in multiaddress format
  11  |timestamp    | 4        | unix timestamp
  12  |previoushash | 32       | necessary in blockchain
- 13  |stateroot    | 32       | root hash of state database
- 14  |txroot       | 32       | transaction root
+ 13  |stateroot    | 32       | root cid hash of state database
+ 14  |txroot       | 32       | TXsCID, IPLD format to index transactions
  15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
- 16  |transactions | 32* 50   | IPFS cid format
 
 9, 10为可选字段。
 
