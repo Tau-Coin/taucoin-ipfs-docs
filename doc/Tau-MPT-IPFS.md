@@ -12,8 +12,7 @@
 3. Trie中的Get, TryGet, tryGet, Update, TryUpdate, insert, Delete, TryDelete, delete函数都是针对于MPT的原生操作；
 		
 4. resolve, resolveHash函数: 从数据库中根据key hash获取一个node
-	
- 	
+```
 	func (t *Trie) resolveHash(n hashNode, prefix []byte) (node, error) {
 		hash := common.BytesToHash(n)
 		if node := t.db.node(hash); node != nil {  //t.db.node(hash) -> 一个核心点
@@ -21,10 +20,10 @@
 		}   
 		return nil, &MissingNodeError{NodeHash: hash, Path: prefix}
 	}
- 
+```
  t.db.node(hash) 从数据库中获取相应的node，这个数据库包括缓存以及硬盘上的，后续的MPT in IPFS是需要修改的；
  
-5.Hash, Commit, hashRoot获取root hash: 获取root hash的过程其实是一个MPT node -> 数据库存储的一个过程，也需要确认修改；
+5. Hash, Commit, hashRoot获取root hash: 获取root hash的过程其实是一个MPT node -> 数据库存储的一个过程，也需要确认修改；
 
 ## SecureTrie
 
@@ -32,8 +31,7 @@ secureTrie是在Trie的基础上包了一层key，可以通过地址直接进行
 
 
 1. GetKey -> 可以通过key直接获取node信息，这个key可以理解为数据库中的key
-	
-    
+``` 
 	func (t *SecureTrie) GetKey(shaKey []byte) []byte {
    		if key, ok := t.getSecKeyCache()[string(shaKey)]; ok {
        		return key 
@@ -41,9 +39,8 @@ secureTrie是在Trie的基础上包了一层key，可以通过地址直接进行
    		key, _ := t.trie.db.preimage(common.BytesToHash(shaKey))
    	 	return key 
 	}
-
-
-2.db.preimage可以理解为一层缓存，在secureTrie中Commit函数中调用了db.insertPreimage，实际是写缓存一个操作。
+```
+2. db.preimage可以理解为一层缓存，在secureTrie中Commit函数中调用了db.insertPreimage，实际是写缓存一个操作。
 
 
 # MPT In TAU
