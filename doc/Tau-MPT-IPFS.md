@@ -43,6 +43,18 @@ secureTrie是在Trie的基础上包了一层key，可以通过地址直接进行
 2. db.preimage可以理解为一层缓存，在secureTrie中Commit函数中调用了db.insertPreimage，实际是写缓存一个操作。
 
 
-# MPT In TAU
+# TAU Data
 
 MPT的操作类似于ETH, common.BytesToHash()计算key的hash方法修改为IPFS中cid hash方法, 并修改相关接口形参即可，数据库的读写更改为IPFS文件的读写。
+
+## State MPT获取过程
+
+	1. 入口为Voting后最长链区块的Root Hash，该Hash对应了MPT的第一个根节点内容
+	2. 通过第一个根节点内容，以MPT搜索方式可以获取某个账户的状态（余额+Power），在搜索过程中，本地IPFS会缓存MPT路径上的文件内容，Tau不做特殊处理，这些文件的管理交给IPFS本身
+	3. 当获取到多个账户状态时，本地内存中的MPT也会有一定的膨胀，MPT节点会有相应的增多
+	4. 当本地修改了某个账户信息时，会以MPT搜索方式进行MPT节点内容的修改，之后需要将这些修改的节点Add到IPFS文件系统中，以供其他节点使用
+	5. 退出Tau时，本地内存中的MPT不会进行本地化存储，再次进入Tau时，根据上述过程继续获取账户的最新状态
+
+## DB In Tau
+
+	1. Tau区块链业务只保留当前最高区块Hash信息, 其他链端信息都存储于IPFS文件系统中
