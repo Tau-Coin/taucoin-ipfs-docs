@@ -43,11 +43,11 @@ go-ethereum-1.9.3
 
 ### 2.2 StateMPT部分
 
-	[MPT In Tau](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-MPT-IPFS.md)
+[MPT In Tau](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/Tau-MPT-IPFS.md)
 
 ### 2.3 本地Block header的存储
 
-	目前Block header的设计满足: Block header chain <=> Block chain
+目前Block header的设计满足: Block header chain <=> Block chain
 
 ## 3. Blockchain业务
 
@@ -56,12 +56,12 @@ go-ethereum-1.9.3
 
 ### 3.3 区块处理
 	
-	- 同步模式的设计和实现(Fast Start模式，Full Node模式)；
-	- 社区最长链的识别和选择模块；
-	- 区块,交易验证，回滚处理；
-	- POT Forge模块；
+- 同步模式的设计和实现(Fast Start模式，Full Node模式)；
+- 社区最长链的识别和选择模块；
+- 区块,交易验证，回滚处理；
+- POT Forge模块；
 
-    [区块大小，出块频率](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/pot.md)
+[区块大小，出块频率](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/pot.md)
 
 ## 4. APP UI层交互模块；
 
@@ -75,14 +75,14 @@ go-ethereum-1.9.3
 
 # 进展及计划
 
-	- UI端基本完成了设计和实现，目前在做图片，音频和视频的切割和IPFS文件系统加载工作，这部分工作预计在20200306前完成，下一步做三种交易的创建，签名和发送工作；
+- UI端基本完成了设计和实现，目前在做图片，音频和视频的切割和IPFS文件系统加载工作，这部分工作预计在20200306前完成，下一步做三种交易的创建，签名和发送工作；
 
-	- 目前已构建了第一版的genesis block, 这部分构建还是基于eth leveldb来实现的，StateDB-MPT在IPFS文件系统中的存储还需要2-3天时间,在20200306前完成,完成StateDB-MPT后可以实现在IPFS文件系统中存储genesis block的账户状态；
+- 目前已构建了第一版的genesis block, 这部分构建还是基于eth leveldb来实现的，StateDB-MPT在IPFS文件系统中的存储还需要2-3天时间,在20200306前完成,完成StateDB-MPT后可以实现在IPFS文件系统中存储genesis block的账户状态；
 
-	- Tau业务中和IPFS系统的pubsub功能已经封装好，网络部分等待联调；
+- Tau业务中和IPFS系统的pubsub功能已经封装好，网络部分等待联调；
 
-	- gtau流程，需要完成config配置，service注册，tau node的启动，这部分是tau业务的基础架构，参考eth目前的实现，流程图和相关说明会在20200306前给出说明；
+- gtau流程，需要完成config配置，service注册，tau node的启动，这部分是tau业务的基础架构，参考eth目前的实现，流程图和相关说明会在20200306前给出说明；
 
-	- 交易池的管理，目前只保留了转账交易，单链中其他两种交易的输入和逻辑处理有待完善，具体方案会在20200306前出来；
+- 交易池的管理，目前只保留了转账交易，单链中其他两种交易的输入和逻辑处理有待完善，具体方案会在20200306前出来；
 
-	- blockchain业务，目前已完成的eth瘦身(evm去除了和vm相关，账户系统修改，POA共识),这部分业务实现较繁琐;
+- blockchain业务，目前已完成的eth瘦身(evm去除了和vm相关，账户系统修改，POA共识),这部分业务实现较繁琐;
