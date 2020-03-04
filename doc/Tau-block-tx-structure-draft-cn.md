@@ -15,7 +15,8 @@
  12  |previoushash | 32       | necessary in blockchain
  13  |stateroot    | 32       | root cid hash of state database
  14  |txroot       | 32       | TXsCID, IPLD format to index transactions
- 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+ 15  |appendixroot | 32       | txs pool in a DAG structure
+ 16  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
 9, 10为可选字段。
 
@@ -137,6 +138,26 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 ### 20200226
 - 账户信息中只存在balance, nounce<=>power.
 - 在现有的框架下，可以适应于多链系统，Shared MPT不再适用。
+---
+
+### 20200304
+- 讨论的问题主要是解决IPFS中的Peer Routing问题
+	1. 目前IPFS的Peer routing和Content routing是基于Kad DHT算法来实现的，在一定网络规模下效率有限
+	2. 为了舍弃DHT查找矿工节点的问题，在区块链中尽可能记录已有矿工节点的信息(Peer Id+ Relay MultiAddress)
+	3. 利用POT可预测出块的机制，矿工节点可以时刻进行区块的Forge, N+1区块的Forge是在其他节点请求下进行
+	4. N+1区块保留Block中的Relay MultiAddress
+	5. 对于打包出块的交易做如下变动
+		5.1 节点本身的交易，交易中需要添加到请求节点的Relay节点信息
+		5.2 其他节点的交易，直接打包即可
+		举例说明，A -> Rb <- B，B节点请求A节点N+1区块，A节点的本身交易需要添加Rb签名后打包
+					其他节点通过节点B，已知Rb，进而可以Peer的链接；
+				  A -> Rc <- C，C节点请求A节点N+1区块，A节点的本身交易需要添加Rc签名后打包
+					其他节点通过节点C，已知Rc，进而可以Peer的链接；
+	6. 增加Appendix Root Hash，其中放当前节点的其他交易信息，该Root Hash背后对应的是一个DAG结构的多笔交易
+
+	7. N+1区块是实时请求，实时返回的结果，因为交易中添加Relay信息的不一致，导致N+1区块也是不同的结果
+
+- 区块交易结构做如下变动，区块增加Appendix Root Hash，交易中再次确认Relay MutliAddress字段的重要性
 ---
 
 #### 多链应用下的交易类型，目前草稿：
