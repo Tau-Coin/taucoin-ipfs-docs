@@ -15,7 +15,7 @@
  12  |stateroot    | 32       | hash of state database MPT, merkle patrecia tree, in ipfs cid
  13  |txroot       | 32       | IPLD format to include transactions in ipfs cid
  14 *  | relaymaroot       | 72       | root of all ipfs relay multi-addressES observed
- 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at same difficulty, high signature number wins.
+ 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at same difficulty, high signature number wins.
 
 * 9,14 - optional
 
