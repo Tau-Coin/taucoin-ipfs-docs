@@ -1,43 +1,41 @@
-# Block
+# Block Header - With IPFS DAG, block headers are all in a block. Transactions, state and pools are all in the DAG. 
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
- 1   |version        | 1          |  "0x1"
- 2   |option         | 1          |  "0x1"
- 3   |chainid        | 32         |  "0x0"
- 4   |blockno        | 8          |  "0x1"
- 5   |basetarget     | 8          |  used for POT calculation
- 6   |cumulativedifficulty    | 8       | fork judgement
- 7   |generationsignature     | 32      | used for POT calculation
- 8   |tforger      | 20       | block forger address in TAU system, for IPLD index and display
- 9   |iforger      | 46       | block forger address in IPFS system, for forging connection
- 10  |relayma      | 72       | IPFS TAU relay nodes in multiaddress format
- 11  |timestamp    | 4        | unix timestamp
- 12  |previoushash | 32       | necessary in blockchain
- 13  |stateroot    | 32       | root cid hash of state database
- 14  |txroot       | 32       | TXsCID, IPLD format to index transactions
- 15  |appendixroot | 32       | txs pool in a DAG structure
- 16  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+ 1   |version        | 1          |  "0x1" as initial default
+ 2   |option         | 1          |  "0x1" as initial default
+ 3   |chainid        | 32         |  "0x0" as TAU main chain or others for branch chain
+ 4   |blockno        | 8          |  "0x1" 
+ 5   |basetarget     | 8          |  for POT - Proof of Transaction calculation
+ 6   |cumulativedifficulty    | 8       | current consensus chain parameter
+ 7   |generationsignature     | 32      | for POT calculation
+ 8   |tforger      | 20       | block forger/miner address in TAU system, for IPLD index and display
+ 9 *  |iforger      | 46       | block forger/miner address in IPFS system, for swarm peer connection
+ 10  |timestamp    | 4        | unix timestamp for winning the block package right
+ 11  |previoushash | 32       | link previou block
+ 12  |stateroot    | 32       | hash of state database MPT, merkle patrecia tree, in ipfs cid
+ 13  |txroot       | 32       | IPLD format to include transactions in ipfs cid, when same difficulty, high cid value win.
+ 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-9, 10为可选字段。
+* 9 is optional
 
-# Transaction
+# Coin Wiring Transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
-1   | version       | 1        |  "0x1"
-2   | option        | 1        |  "0x1"
-3   | chainid       | 32       |  "0x0"
-4   | blockhash     | 32       |  "0x0"
-5   | nounce        | 8        |  "0x1"
+1   | version       | 1        |  "0x1" as default
+2   | option        | 1        |  "0x1" as default
+3   | chainid       | 32       |  "0x0" as TAU main chain or others for branch chain
+4 *  | blockhash     | 32       |  "0x0" similar to EOS TAPOS, witness of a block in a believed right chain
+5   | nounce        | 8        |  "0x1" similar to ETH nounce to prevent replay transactions
 6   | timestamp     | 4        | tx timestamp
 7   | tsender       | 20       | tx sender address in TAU system, for IPLD index and display
-8   | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS
-9   | relayma       | 72       | relay multiaddress in IPFS system, for adding relay nodes
+8 *  | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS
+9 *  | relaymaroot       | 72       | root of all ipfs relay multi-addressES at the timestamp that tx is created
 10  | receiver      | 20       | tx receiver
 11  | amount        | 5        | transfer amount
 12  | fee           | 1        | transaction fee
 13  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-4, 8, 9为可选字段。
+4, 8, 9 are optional
 
 # Modified Notes
 ## Block
