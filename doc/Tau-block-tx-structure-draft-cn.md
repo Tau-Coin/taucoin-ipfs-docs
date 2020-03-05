@@ -26,7 +26,7 @@
 1   | version       | 1        |  "0x1"
 2   | option        | 1        |  "0x1"
 3   | chainid       | 32       |  "0x0"
-4   | blockhash     | 32       |  "0x0"
+4   | blockhash     | 32       |  "0x0" similar to EOS transaction as proof idea
 5   | nounce        | 8        |  "0x1"
 6   | timestamp     | 4        | tx timestamp
 7   | tsender       | 20       | tx sender address in TAU system, for IPLD index and display
