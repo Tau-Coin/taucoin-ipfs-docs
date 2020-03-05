@@ -178,7 +178,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 
 		1.1 对于已在线过的节点，是否保留连接过的中继和Peers，或者优先连接
 
-    2. 区块和交易信息中数据为上线节点提供了起始的Relay nodes和Tau链上的Peers；
+	2. 区块和交易信息中数据为上线节点提供了起始的Relay nodes和Tau链上的Peers；
 
 	3. 连接和本节点网络通讯较好的几个中继节点后，借助Relay链路可以进一步连接Tau链上记录的Peer
 
@@ -196,7 +196,7 @@ IPFS Cid区分信息类型的方案：可以类似与CID version实现，message
 
 		B请求新节点A的下一个区块, 记做ABlock(n+ 1)，这种行为也是合法的，即便远落后于主链高度
 
-	5. 通过Block(n+ 1)以及IPFS本有的Content Routing机制，可以获取每个Swarm peer的Block(n)
+	5. 通过Block(n+ 1)以及IPFS的Content Routing机制，可以获取每个Swarm peer的Block(n)
 
 		5.1 对于Block(n+ 1)的处理，先拿Block(n+ 1)区块中记录的交易信息(打包的一级交易，Appendix root记录的交易),来丰富自己的交易池
 
