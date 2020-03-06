@@ -1,48 +1,35 @@
-# taucoin-ipfs-docs
+# TAU - dForum on Mobile Cloud
 Documentation on the Implementation of taucoin on ipfs
 
 ## Table of Contents
 
 - [network structure](#network-structure)
-- [data exchange based on pubsub mechanism](#data-exchange-based-on-pubsub-mechanism)
-- [block chain hash chain and hashc](#block-chain-hash-chain-and-hashc)
-- [transactions transaction pool and hashl](#transactions-transaction-pool-and-hashl)
-- [voting for best hash pair](#voting-for-best-hash-pair)
-- [block synchronization flow chart](#block-synchronization-flow-chart)
-- [sync mode in mobile node](#sync-mode)
+- [data exchange](#data-exchange)
+- [transactions pool](#transactions-pool)
+- [voting](#voting)
+- [stateless](#stateless)
 
 
 ## NETWORK STRUCTURE
 
-![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/networkstructure.jpg)
+Making mobile phone behind firewall/nat to work as node requires relay nodes to connect mobile peers. The IFPS autorelay does not work as planned due to the spam on DHT. TAU used blockchain onchain info to provide higher quality relay information. When a TAU node getting online, it will read from local blockchain to connect to relays. 
+After connecting to relay, the new node will build a swarm with peers that existing on chain either as miners or transaction senders. 
+[Detail](doc/Tau-block-tx-structure-draft-cn.md)
 
-## DATA EXCHANGE BASED ON PUBSUB MECHANISM
+## DATA EXCHANGE
 
-![pubsubmechanism](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/dataexchangebasedonpubsubmechanism.jpg)
+TAU nodes exchange data through on one way: exchange (n+1) block hash among swarm peers. Each node will package own transaction along with valid txs from pool to build the n+1 block, then exchange with every peer's exchange requests. 
+This is an innocation, will be more documented. 
 
-## BLOCK CHAIN HASH CHAIN AND HASHC
 
-![dst](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blockchainhashchainandhashc.jpg)
+## TRANSACTIONS POOL
 
-## TRANSACTIONS TRANSACTION POOL AND HASHL
+Each node maintain own transaction pool. The pool information exchanging is through promoting n+1 block to other peers. The tx content is from locale tx pool. 
 
-![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/transactiontransactionpoolandhashl.jpg)
+## VOTING
 
-## VOTING FOR BEST HASH PAIR
+New node A will get many n+1 blocks from peers p1,p2,p3..pn. In A memory, for each n+1 block, it will have a list of n-th block, the believed right chain is based on the voting result of n-th voting from swarm peers. A also maintains a future winninig block vectos will many n+1 blocks ranked by their expected time to win. When times comes, the top on the n+1 block vector will become new n-th block for preparing local block. When n-th block has two candidates with same difficulty level, choose high signature value option. This idea is complex. Need more docs. 
 
-![Imagetext](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/votingforbesthashpair.jpg)
+## Stateless
 
-## BLOCK SYNCHRONIZATION FLOW CHART
-
-![sddt](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/imgfile/blocksynchronizationflowchart.jpg)
-
-## SYNC MODE
-Anyone is able to run a taucoin node on their mobile. This means that you can participate in validating transactions and blocks on tauchain. To speed up user's mining process, fast mining mode is used. Also to prevent excessive dependence on TAU IPFS nodes and as an individual node in tauchain, entire blocks will be fetched from IPFS network. Later is called full node mode.
-
-### Fast mining mode
-In fast mining mode, lastest account state database-StateDBTAG is fetched from IPFS TAU nodes. In this process, the clients trust IPFS TAU nodes without any condition. When acount state database is done, clients can start mining after synchronizing several blocks.
-
-### Full node mode
-In full node mode, clients fetch each block from IPFS network, which made it possible to verify StateDBTAG. Also an obvious drawback is the low efficiency in synchronous process for each block's download and verification. We can validiate the StateDBTAG when block no reaches the height of marked StateDBTAG. 
-
-Both fast mining mode and full node mode are concurrently existing when apk begins. Implementation will be improved later. 
+All TAU nodes are working in stateless mode. Need more docs. 
