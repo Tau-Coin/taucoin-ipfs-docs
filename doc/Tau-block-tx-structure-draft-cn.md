@@ -1,21 +1,21 @@
-# Block Header - With IPFS DAG, block headers are all in a block. Transactions, state and pools are all in the DAG. 
+# Block Header - With IPFS DAG, block headers are all in a block. Transactions and state are all in the IPFS DAG. 
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
- 1   |version        | 1          |  "0x1" as initial default
+ 1   |version        | 1          |  "0x1" as initial default, increase block through version 
  2   |option         | 1          |  "0x1" as initial default
  3   |chainid        | 32         |  "0x0" as TAU main chain or others for branch chain
  4   |blockno        | 8          |  "0x1" 
  5   |basetarget     | 8          |  for POT - Proof of Transaction calculation
  6   |cumulativedifficulty    | 8       | current consensus chain parameter
- 7   |generationsignature     | 32      | for POT calculation
+ 7   |generationsignature     | 32      | for POT calculation, #7 x power x time
  8   |tforger      | 20       | block forger/miner address in TAU system, for IPLD index and display
- 9 *  |iforger      | 46       | block forger/miner address in IPFS system, for swarm peer connection
+ 9*  |iforger      | 46       | block forger/miner address in IPFS system, for swarm peer connection
  10  |timestamp    | 4        | unix timestamp for winning the block package right
  11  |previoushash | 32       | link previou block
  12  |stateroot    | 32       | hash of state database MPT, merkle patrecia tree, in ipfs cid
  13  |txroot       | 32       | IPLD format to include transactions in ipfs cid
  14* | relaymaroot       | 72       | root of all ipfs relay multi-addressES observed, default is top 10
- 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at same difficulty, high signature number wins.
+ 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at #6 same difficulty, high signature number wins.
 
 * 9,14 - optional
 
