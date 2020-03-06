@@ -56,9 +56,9 @@ go-ethereum-1.9.3
 
 ### 3.3 区块处理
 	
-- 同步模式的设计和实现(Fast Start模式，Full Node模式)；
-- 社区最长链的识别和选择模块；
-- 区块,交易验证，回滚处理；
+- stateless framework
+- 社区最长链的识别和选择模块；voting based right chain selection for n-th block.
+- 区块,交易验证，回滚处理；on voting and MPT stateless mining, there is really no roll-back needed. It is just switch the stateroot.
 - POT Forge模块；
 
 [区块大小，出块频率](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/pot.md)
