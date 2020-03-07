@@ -22,21 +22,12 @@
 # Coin Wiring Transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
-<<<<<<< HEAD
-1   | version       | 1        |  "0x1"
-2   | option        | 1        |  "0x1"
-3   | chainid       | 32       |  "0x0"
-4   | blockhash     | 32       |  "0x0" similar to EOS transaction as proof idea
-5   | nounce        | 8        |  "0x1"
-6   | timestamp     | 4        | tx timestamp
-=======
 1   | version       | 1        |  "0x1" as default
 2   | option        | 1        |  "0x1" as default
 3   | chainid       | 32       |  "0x0" as TAU main chain or others for branch chain
 4 *  | blockhash     | 32       |  "0x0" similar to EOS TAPOS, witness of the block at the mutable range point in a believed  chain
 5   | nounce        | 8        |  "0x1" similar to ETH nounce to prevent replay transactions
 6   | timestamp     | 4        | tx timestamp, tx expire in 12 hours
->>>>>>> 5de646501d490828abd946a5ebb32f1e383dc9d3
 7   | tsender       | 20       | tx sender address in TAU system, for IPLD index and display
 8 *  | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS
 9  | receiver      | 20       | tx receiver
