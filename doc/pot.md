@@ -1,3 +1,17 @@
+### 12 hours as mutable range, transaction expiry time, voting, TAPOS
+
+TAU 设计最大程度避免使用常数。任何一个常数的出现，也将获得最大程度的使用。12小时是个关键常数用于如下几个部分：mutable range的切分点，交易过期时间，TAPOS的区块索引。
+
+
+In the swarm, when peers send out (n+1)th blocks, the highest difficulty n-th block will win. However, when this blockchain's fork block happens prior to mutable range, it will send to human intervention for now. In the future, we will adopt voting system, which could be onchain id basis, pot power basis or pos power basis. 
+
+A normal node is the one continously online for more than 12 hours. Other than this, it is defined as new node.  
+正常节点的定义：任何节点只有连续在swarm中接受n+1区块12小时，才是正常节点。除此之外就定义为新节点。新节点的选链状态一直是在随机行走中的。
+For new nodes, there is not mutable range, until it is online for 12 hours. 
+
+“最长链的切换“策略。在tau swarm peers中对n+1个区块进行表决时，接受节点A会收到许多P1，P2，P3...等的n+1区块的表决，这些区块的第n区块都有个积累难度值。含有第n区块的链的分叉点在12小时的mutable range内，难度值最大的第n区块b1将获得信任，含区块b1的区块链即便是一票也可以获得胜利，本质上是在swarm里面随机行走比较难度。但是区块链的位置分叉点落在mutable range 12小时切分点之前，b1将不会被切换，而转给人工处理。
+
+
 ### 关于出块时间与出块频率
 
 以太坊关于出块时间有下面一段话：
