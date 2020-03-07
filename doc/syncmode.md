@@ -18,8 +18,4 @@ fast mode: 简单的说 fast sync的模式会下载区块头，区块体和收�
 
 #### taucoin
 
-taucoin的同步基本上借鉴ethereum的同步过程，区块同步之前会有一个选链的过程，具体可参考[选链过程](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/selectchain.md)，一般选链机制包括两个部分，发现的链与本地链的区块高度差在mutable range之外进行的投票选择机制和高度差在mutable range之内的最长链快速选择机制，理论上，离最新高度越远的区块共识度越高，mutable range之外的区块，全网具有的一致性应该达到一定的标准（一致性标准矿工可以根据个人情况指定，比如为90%），否则要根据社区信息进行人工干预。选链一旦完成就可以开始同步区块，根据是否验证历史区块也是分为full mode和fast mode两种模式:
-
-full mode: 先是对区块高度差在mutable range的情况进行投票选择，同步时先递归同步区块头，直到到达创世区块，然后从创世区块开始，边同步区块体，边执行交易；同步的高度差小于mutable range之后，进入最长链快速同步阶段，同样也是先同步区块头，再同步区块体，同时执行交易直到最新区块，新区块来了接着执行验证；
-
-fast mode: 和full mode基本相同，唯一的区别是第一次投票同步时会选择一个pivot point，在这个高度进行statedb的同步，在此高度之后的区块都会执行交易。为了选择fast mode的pivot point，我们将第一次投票出来的达到一致性标准的区块高度记为h1，则投票有效的情况下应有 0<=h1<=mutable range，为了确保pivot point在正确的社区链mutable range之外，将pivot point设置为**h1 - mutable range**；如果投票无效进入人工选链的话，pivot point可以设置为（**信任的社区链头部 - mutable range**）。
+taucoin区块同步之前会有一个选链的过程，具体可参考[选链过程](https://github.com/Tau-Coin/taucoin-ipfs-docs/blob/master/doc/selectchain.md)，一般选链机制包括两个部分，发现的链与本地链的区块高度差在mutable range之外进行的投票选择机制和高度差在mutable range之内的最长链快速选择机制，理论上，离最新高度越远的区块共识度越高，mutable range之外的区块，全网具有的一致性应该达到一定的标准（一致性标准矿工可以根据个人情况指定，比如为90%），否则要根据社区信息进行人工干预。
