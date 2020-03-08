@@ -7,7 +7,7 @@ Documentation on the Implementation of taucoin on ipfs
 - [data exchange](#data-exchange)
 - [transactions pool](#transactions-pool)
 - [voting](#voting)
-- [stateless](#stateless)
+- [nodes state](#nodes-state)
 
 
 ## NETWORK STRUCTURE
@@ -28,8 +28,14 @@ Each node maintain own transaction pool. The pool information exchanging is thro
 
 ## VOTING
 
-New node A will get many n+1 blocks from peers p1,p2,p3..pn. In A memory, for each n+1 block, it will have a list of n-th block, the believed right chain is based on the voting result of n-th voting from swarm peers. A also maintains a future winninig block vectos will many n+1 blocks ranked by their expected time to win. When times comes, the top on the n+1 block vector will become new n-th block for preparing local block. When n-th block has two candidates with same difficulty level, choose high signature value option. This idea is complex. Need more docs. 
+New node A will get many n+1 blocks from peers p1,p2,p3..pn. In A memory, for each n+1 block, A also maintains a future winninig block vectos will many n+1 blocks ranked by their expected time to win. When times comes, the top on the n+1 block vector will become new n-th block. When n-th block has two candidates with same difficulty level, choose high signature value option. This is to prevent two winning blocks with same difficulty level. 
 
-## Stateless
+## NODES STATE
 
-All TAU nodes are working in stateless mode. Need more docs. 
+When new nodes join the network, it has following stages:
+1. Connect to relays - using software bootstrap and available blockchain content to connect relays. 
+2. Build peer swarm - using software bootstrap and onchain info to connect peers.
+3. Build wood wall - randomly asking for (n+1) blocks from on-chain peers from swarm, and verify blocks within the wall or the mutable range. When block comes in with higher difficulty, node will switch to higher difficulty chain.  
+4. Build iron wall - online and verifying blocks from peers for 12 hours, wood wall becomes iron wall. When block comes in with higher difficulty, node will switch to higher difficulty chain only when it is within the mutable range. 
+5. Transfer to human - in iron wall state, when higher difficulty chain forks happened out of the mutable range, it is considerred as an attack. so that require human envolve. 
+All TAU nodes are working in stateless mode, the 12 hours in wood wall is the effort to sync with the blockchain and download state tree and necessary blocks. 
