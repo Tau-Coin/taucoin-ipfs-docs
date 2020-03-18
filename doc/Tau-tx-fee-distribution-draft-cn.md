@@ -7,3 +7,7 @@ personal info tx, transfer tx, message tx中的新消息交易, 矿工获得100%
 #### 矿工+ 被回复者
 
 message tx中的回复消息交易，矿工和被回复者一人获得50%的交易费.
+
+20200317
+
+三种交易的交易费100%给矿工
