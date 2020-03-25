@@ -1,4 +1,4 @@
-# Block Header - With IPFS DAG, block headers are all in a block. Transactions and state are all in the IPFS DAG. 
+# Block 
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
  1   |version        | 1          |  "0x1" as initial default, increase block through version 
@@ -8,48 +8,48 @@
  5   |basetarget     | 8          |  for POT - Proof of Transaction calculation
  6   |cumulativedifficulty    | 8       | current consensus chain parameter
  7   |generationsignature     | 32      | for POT calculation, #7 x power x time
- 8   |tforger      | 20       | block forger/miner address in TAU system, for IPLD index and display
- 9*  |iforger      | 46       | block forger/miner address in IPFS system, for swarm peer connection
+ 8   |tforger      | 20       | forger/miner address used in TAU system, for IPLD index and display
+ 9   |iforger      | 46       | forger/miner address used in IPFS system, for peer connection; tforger to iforger is 1 to many relation, a TAU account can mine on multiple ipfs device/node
  10  |timestamp    | 4        | unix timestamp for winning the block package right
  11  |previoushash | 32       | link previou block
  12  |stateroot    | 32       | hash of state database MPT, merkle patrecia tree, in ipfs cid
- 13  |txroot       | 32       | IPLD format to include transactions in ipfs cid
- 14* | relaymaroot       | 72       | root of all ipfs relay multi-addressES observed, default is top 10
- 15  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at #6 same difficulty, high signature number wins.
+ 13  |txs       | *       | transactions content
+ 14  |signature    | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte, when at #6 same difficulty, high signature number wins.
 
-* 9,14 - optional
 
-# Coin Wiring Transaction
+# Transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
 1   | version       | 1        |  "0x1" as default
 2   | option        | 1        |  "0x1" as default
 3   | chainid       | 32       |  "0x0" as TAU main chain or others for branch chain
-4 *  | blockhash     | 32       |  "0x0" similar to EOS TAPOS, witness of the block at the mutable range point in a believed  chain
+4   | blockhash     | 32       |  "0x0" similar to EOS TAPOS, witness of the block within the mutable range point in a chosen chain, must fill in to promote community engagement for high security
 5   | nounce        | 8        |  "0x1" similar to ETH nounce to prevent replay transactions
 6   | timestamp     | 4        | tx timestamp, tx expire in 12 hours
 7   | tsender       | 20       | tx sender address in TAU system, for IPLD index and display
-8 *  | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS
-9  | receiver      | 20       | tx receiver
+8   | isender       | 46       | tx sender address in IPFS system, for locating tx file in IPFS; tsender to isender is 1 to many relations; a TAU sender can send on multiple devices. 
+9  | receiver      | 20       | tx receiver in TAU system
 10  | amount        | 5        | transfer amount
-11  | fee           | 1        | transaction fee
-15  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
+11  | txfee           | 1        | transaction fee
+15  | relay           | 32        | cid of the relay and multi-address, mobile node connect to relay and incentivate with fee
+16  | relayfee           | 1        | relay fee, current version set to zero until the relay private key is supported to do wring
+17  | signature     | 65       | r: 32 bytes, s: 32 bytes, v: 1 byte
 
-4, 8 - optional; #12-#14 are message transactions fields.
+4 - optional; #12-#14 are for different type of transactions fields.
 
-# Personal info transaction
+# Miner info update transaction - all users are miner
  No              |  Key           | Size-Byte        |  Notes
  ----------------------|----------------|------------------|----------------------
 12  | contactname      | 32         | the defaul is your telegram id or other anything
 13  | name             | 20         | nickname
-14  | profile          | 32         | personal profile in ipfs cid format
+14  | profile          | 32         | user profile in ipfs cid format, miner is not reponsible for "undeletabilit" of this content
 
 # Message transaction
  No              |  Key           | Size-Byte        |  Notes
  ----------------|----------------|------------------|----------------------
 12  | referid      | 32           | the past CID referred in new message
-13  | intro        | 256          | the title/intro of the message
-14  | content      | 33           | The content of the message in ipfs CID format
+13  | content        | 1024          | the title/intro of the message
+14  | attachment      | 32           | The attachment in ipfs CID format, miner is not reponsible for "undeletabilit" of this content
 
 # Dev Discussion logs
 ### 20191118
